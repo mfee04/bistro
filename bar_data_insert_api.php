@@ -68,9 +68,9 @@ if(! empty($_FILES['preview-pic']['name'])){
             };
             $sql="INSERT INTO `allstore`(
                 `name`, `phone`,`日式`,`西式`,`義式`, `lounge_bar`
-                ,`居酒屋`, `專門調酒`,`漢堡店`,`運動酒吧`, `夜店舞廳`,`address`, 
+                ,`居酒屋`, `專門調酒`,`漢堡店`,`運動酒吧`, `夜店舞廳`,`address`, `latlng`,
                 `preview-pic`, `company-id`, `owner`, `email`, 
-                `how-much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                `how-much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             $stmt=$pdo->prepare($sql);
             $stmt->execute([
@@ -86,6 +86,7 @@ if(! empty($_FILES['preview-pic']['name'])){
                 $_POST['運動酒吧'],
                 $_POST['夜店舞廳'],
                 $_POST['address'],
+                $_POST['latlng'],
                 $upload_dir.$new_filename.$new_ext,
                 $_POST['company-id'],
                 $_POST['owner'],
@@ -133,9 +134,9 @@ if(! empty($_FILES['preview-pic']['name'])){
     };
     $sql="INSERT INTO `allstore`(
         `name`, `phone`,`日式`,`西式`,`義式`, `lounge_bar`
-        ,`居酒屋`, `專門調酒`,`漢堡店`,`運動酒吧`,`夜店舞廳`, `address`, 
+        ,`居酒屋`, `專門調酒`,`漢堡店`,`運動酒吧`,`夜店舞廳`, `address`, `latlng`,
         `company-id`, `owner`, `email`, 
-        `how-much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        `how-much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt=$pdo->prepare($sql);
     $stmt->execute([
@@ -151,6 +152,7 @@ if(! empty($_FILES['preview-pic']['name'])){
         $_POST['運動酒吧'],
         $_POST['夜店舞廳'],
         $_POST['address'],
+        $_POST['latlng'],
         $_POST['company-id'],
         $_POST['owner'],
         $_POST['email'], 

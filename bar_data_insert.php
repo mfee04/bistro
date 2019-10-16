@@ -34,9 +34,12 @@ $page_title = '新增資料';
                     <div class="form-group">
                         <label for="address">地址</label>
                         <input name="address" type="text" class="form-control" id="address">
-                        <!-- 店名連接api 變成經緯寫法 -->
                         <small id="addressHelp" class="form-text"></small>
                     </div>
+                    <!-- 轉換經緯 -->
+                    <input type="hidden" id="latlng" name="latlng">
+
+
                     <h5>餐廳類型</h5>
                     <div class="form-check form-check-inline">
                         <?php
@@ -65,7 +68,7 @@ $page_title = '新增資料';
                         <label for="preview-pic">預覽圖(暫留位子)</label><br>
                         <input name="preview-pic" type="file" id="preview-pic" onchange="previewFile()">
                         <div style="width:60%">
-                            <img src="" alt="" class="show_pic img-fluid">
+                            <img src="" alt="" class="show_pic" style="object-fit:scale-down; width:100%" >
                         </div>
                     </div>
                     <!--營業時間  -->
@@ -164,7 +167,30 @@ $page_title = '新增資料';
         let info_bar = document.querySelector('#info_bar');
         let btn = document.querySelector('#submit_btn');
         let i, s, item;
+        let latlng = document.querySelector('#latlng');
+        
+        // 地址轉經緯度
+        latlng.addEventListener('blur',function(){
+            fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+address.value
+            +'&key=AIzaSyAadMvzelzRIjMSAZyGh8UoUpckWI-8Q6w')
+                .then(response=>{
+                return  response.json()
+                })
+                .catch(function(error){
+                    alert(error + " ,此地址無效")
+                })
+                .then(json=>{
+                    console.log(json.results[0].geometry.location)
+                    console.log(json.results[0].geometry)
+                    console.log(json.results[0])
+                    console.log(json)
+                    latlng.value =json.results[0].geometry.location.lat+',' + json.results[0].geometry.location.lng
+                    
+                })
+            
+    })
 
+        
         // -------批次填入
         let time_value
         $('.time').keyup(function() {
@@ -218,7 +244,7 @@ $page_title = '新增資料';
             },
         ];
 
-        // // 拿到對應的 input element (el), 顯示訊息的 small element (infoEl)
+        // 拿到對應的 input element (el), 顯示訊息的 small element (infoEl)
         for (s in required_fields) {
             item = required_fields[s];
             item.el = document.querySelector('#' + item.id);

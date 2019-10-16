@@ -66,6 +66,8 @@ $arr = ['日式', '西式', '義式', 'lounge_bar', '專門調酒', '居酒屋',
                         <!-- 店名連接api 變成經緯寫法 -->
                         <small id="addressHelp" class="form-text"></small>
                     </div>
+                    <input type="hidden" id="latlng" name="latlng" value="<?=htmlentities($row['latlng'])?>">
+
                     <h2>餐廳類型</h2>
                     <?php for ($i = 0; $i < count($arr); $i++) : ?>
                     <div class="form-check form-check-inline">
@@ -150,19 +152,23 @@ $arr = ['日式', '西式', '義式', 'lounge_bar', '專門調酒', '居酒屋',
                     </div>
                     <h2>服務項目</h2>
                     <div class="form-check form-check-inline">
-                        <input name="service[]" type="checkbox" id="inlineCheckbox10" value="停車位">
+                        <input name="service[]" type="checkbox" id="inlineCheckbox10" value="停車位" 
+                        <?= strpos($row['service'], "停車位")>0 ? 'checked':'' ?>>
                         <label class="form-check-label" for="inlineCheckbox10">停車位</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input name="service[]" type="checkbox" id="inlineCheckbox11" value="夜間叫車">
+                        <input name="service[]" type="checkbox" id="inlineCheckbox11" value="夜間叫車"
+                        <?= strpos($row['service'], "夜間叫車")>0 ? 'checked':'' ?>>
                         <label class="form-check-label" for="inlineCheckbox11">夜間叫車</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input name="service[]" type="checkbox" id="inlineCheckbox12" value="無障礙廁所">
+                        <input name="service[]" type="checkbox" id="inlineCheckbox12" value="無障礙廁所"
+                        <?= strpos($row['service'], "無障礙廁所")>0 ? 'checked':'' ?>>
                         <label class="form-check-label" for="inlineCheckbox12">無障礙廁所</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input name="service[]" type="checkbox" id="inlineCheckbox13" value="DJ">
+                        <input name="service[]" type="checkbox" id="inlineCheckbox13" value="DJ"
+                        <?= strpos($row['service'], "DJ")>0 ? 'checked':'' ?>>
                         <label class="form-check-label" for="inlineCheckbox13">DJ</label>
                     </div>
                     <div>
@@ -178,6 +184,30 @@ $arr = ['日式', '西式', '義式', 'lounge_bar', '專門調酒', '居酒屋',
     </div>
 
     <script>
+    let latlng = document.querySelector('#latlng');
+    let address = document.querySelector('#address');
+    // 地址轉經緯度
+        address.addEventListener('blur',function(){
+        fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+address.value
+        +'&key=AIzaSyAadMvzelzRIjMSAZyGh8UoUpckWI-8Q6w')
+            .then(response=>{
+              return  response.json()
+            })
+            .then(json=>{
+                console.log(json.results[0].geometry.location)
+                console.log(json.results[0].geometry)
+                console.log(json.results[0])
+                console.log(json)
+                latlng.value =json.results[0].geometry.location.lat+',' + json.results[0].geometry.location.lng
+                
+            })
+            .catch(function(){
+                alert("此地址無效")
+            })
+    })
+
+
+
     //--------批次時間填入
         let time_value
         $('.time').keyup(function() {
