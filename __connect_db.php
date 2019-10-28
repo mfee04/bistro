@@ -1,10 +1,13 @@
 <?php
 
-$db_host = 'db4free.net:3306';
+// $db_host = 'db4free.net:3306';
+// $db_name = 'bistro';
+// $db_user = 'bistro204';
+// $db_pass = 'bistro204';
+$db_host = 'localhost';
 $db_name = 'bistro';
-$db_user = 'bistro204';
-$db_pass = 'bistro204';
-
+$db_user = 'root';
+$db_pass = '';
 $dsn = "mysql:host={$db_host};dbname={$db_name}";
 
 //pdo連線設定

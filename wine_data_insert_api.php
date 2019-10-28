@@ -1,6 +1,6 @@
 <?php
-require __DIR__. '/__admin_required.php';
-require __DIR__.'/__connect_db.php';
+require __DIR__ . '/__admin_required.php';
+require __DIR__ . '/__connect_db.php';
 
 $result = [
     'success' => false,
@@ -35,6 +35,10 @@ if (!empty($_FILES['my_file'])) {
         $new_ext = $allowed_connection[$_FILES['my_file']['type']]; //副檔名
         move_uploaded_file($_FILES['my_file']['tmp_name'], $upload_dir . $new_filename . $new_ext);  //串接 資料夾檔名+資料庫裡的轉碼檔名+副檔名
     }
+}
+if (!isset($new_filename)) {
+    $new_filename = '';
+    $new_ext = '';
 }
 
 // ---------------------------------------------------------------

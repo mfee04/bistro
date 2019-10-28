@@ -135,7 +135,7 @@ $stmt = $pdo->query($sql)
                 </label>
             </td>
             <td class="box_td"><?= $r['sid'] ?></td>
-            <td class="box_td"><?= htmlentities($r['name']) ?></td> <!-- htmlentities，將標籤轉換為HTML文字，防止執行標籤 -->
+            <td><?= htmlentities($r['name']) ?></td> <!-- htmlentities，將標籤轉換為HTML文字，防止執行標籤 -->
             <td class="box_td"><?= htmlentities($r['kind']) ?></td> <!-- htmlentities，將標籤轉換為HTML文字，防止執行標籤 -->
             <td class="box_td"><?= htmlentities($r['producing_countries']) ?></td>
             <!-- htmlentities，將標籤轉換為HTML文字，防止執行標籤 -->
@@ -301,19 +301,19 @@ jQuery(function($) {
         $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
     });
 
-    setTimeout(function() {
-        $($('.tableTools-container')).find('a.dt-button').each(function() {
-            var div = $(this).find(' > div').first();
-            if (div.length == 1) div.tooltip({
-                container: 'body',
-                title: div.parent().text()
-            });
-            else $(this).tooltip({
-                container: 'body',
-                title: $(this).text()
-            });
-        });
-    }, 500);
+    // setTimeout(function() {
+    //     $($('.tableTools-container')).find('a.dt-button').each(function() {
+    //         var div = $(this).find(' > div').first();
+    //         if (div.length == 1) div.tooltip({
+    //             container: 'body',
+    //             title: div.parent().text()
+    //         });
+    //         else $(this).tooltip({
+    //             container: 'body',
+    //             title: $(this).text()
+    //         });
+    //     });
+    // }, 500);
 
     myTable.on('select', function(e, dt, type, index) {
         if (type === 'row') {
