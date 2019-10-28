@@ -1,9 +1,9 @@
 <?php
 
-$db_host = 'localhost';
+$db_host = 'db4free.net:3306';
 $db_name = 'bistro';
-$db_user = 'root';
-$db_pass = 'root';
+$db_user = 'bistro204';
+$db_pass = 'bistro204';
 
 $dsn = "mysql:host={$db_host};dbname={$db_name}";
 
