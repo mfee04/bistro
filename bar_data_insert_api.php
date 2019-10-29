@@ -69,8 +69,8 @@ if(! empty($_FILES['preview-pic']['name'])){
             $sql="INSERT INTO `allstore`(
                 `name`, `phone`,`日式`,`西式`,`義式`, `lounge_bar`
                 ,`居酒屋`, `專門調酒`,`漢堡店`,`運動酒吧`, `夜店舞廳`,`address`, `latlng`,
-                `preview-pic`, `company-id`, `owner`, `email`, 
-                `how-much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                `preview_pic`, `company_id`, `owner`, `email`, 
+                `how_much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             $stmt=$pdo->prepare($sql);
             $stmt->execute([
@@ -135,8 +135,8 @@ if(! empty($_FILES['preview-pic']['name'])){
     $sql="INSERT INTO `allstore`(
         `name`, `phone`,`日式`,`西式`,`義式`, `lounge_bar`
         ,`居酒屋`, `專門調酒`,`漢堡店`,`運動酒吧`,`夜店舞廳`, `address`, `latlng`,
-        `company-id`, `owner`, `email`, 
-        `how-much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        `company_id`, `owner`, `email`, 
+        `how_much`, `service`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     $stmt=$pdo->prepare($sql);
     $stmt->execute([
