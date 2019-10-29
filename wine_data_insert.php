@@ -137,14 +137,11 @@ function checkForm() {
             body: fd,
         })
         .then(response => {
-            return response.text();
+            return response.json();
             console.log(response)
         })
         .then(json => {
-
-
             console.log(json);
-            return;
             submit_btn.style.display = 'none'; //防止訊號不好重複按鍵新增
             info_bar.style.display = 'none'; //顯示提示訊息
             info_bar.innerHTML = json.info;
@@ -152,7 +149,7 @@ function checkForm() {
                 info_bar.className = 'alert alert-success';
                 setTimeout(function() { //成功後跳轉頁面
                     location.href = 'wine_data_insert.php';
-                }, 1000); //成功執行 1秒後刷新頁面
+                }, 500); //成功執行 .5秒後刷新頁面
             } else {
                 info_bar.className = 'alert alert-danger';
             }
