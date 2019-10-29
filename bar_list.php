@@ -154,9 +154,9 @@ header("Pragma: no-cache"); ?>
                         </td>
                     <?php endfor; ?>
                     <td><?= htmlentities($r['address']) ?></td>
-                    <td><img src="<?= htmlentities($r['preview-pic']) == true ? htmlentities($r['preview-pic']) : 'lib/images/bar/uploads/no_serve.jpg' ?>" alt="" height="60"></td>
+                    <td><img src="<?= htmlentities($r['preview_pic']) == true ? htmlentities($r['preview_pic']) : 'lib/images/bar/uploads/no_serve.jpg' ?>" alt="" height="60"></td>
                     <td><?= htmlentities($r['owner']) ?></td>
-                    <td><?= htmlentities($r['company-id']) ?></td>
+                    <td><?= htmlentities($r['company_id']) ?></td>
                     <!-- <td><? //= htmlentities(json_decode($r['service'])) 
                                     ?></td> -->
                     <td><!-- 上下架判斷 -->
